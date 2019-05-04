@@ -42,4 +42,4 @@ chef-manage-ctl reconfigure --accept-license
 touch /vagrant/certs/chef-configured
 
 printf "\033c"
-echo "Chef Console is ready: http://chef-server/ with login: chefadmin password: chefadmin"
+echo "Chef Console is ready: https://chef-server/ with login: chefadmin password: chefadmin"
