@@ -70,7 +70,10 @@ knife ssl fetch
 knife ssl check
 
 # test upload the example cookbooks / role
-knife upload .
+knife cookbook upload starter
+
+# delete uploaded cookbook
+knife cookbook delete starter
 ```
 
 ## Bring up nodes to manage
