@@ -1,0 +1,17 @@
+unless Vagrant.has_plugin?("vagrant-hostsupdater")
+  raise 'vagrant-hostsupdater plugin is not installed!'
+end
+
+Vagrant.configure(2) do |config|
+
+  config.vm.define :chef_server do |chef_server_config|
+      chef_server_config.vm.box = "bento/ubuntu-16.04"
+      chef_server_config.vm.hostname = "chef-server"
+      chef_server_config.vm.network :private_network, ip: "10.0.15.10"
+      chef_server_config.vm.provider "virtualbox" do |vb|
+        vb.memory = "4096"
+      end
+      chef_server_config.vm.provision :shell, path: "provision/bootstrap.sh"
+  end
+
+end

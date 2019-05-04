@@ -1,0 +1,27 @@
+unless Vagrant.has_plugin?("vagrant-hostsupdater")
+  raise 'vagrant-hostsupdater plugin is not installed!'
+end
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "bento/ubuntu-18.04"
+  config.vm.hostname = "node-ubuntu"
+  config.vm.network "private_network", ip: "10.0.15.100"
+
+  #config.vm.provider "virtualbox" do |vb|
+  #   vb.gui = true
+  #   vb.memory = "1024"
+  #end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    # remove all entries after vagrant comment
+    sed -n '/# vagrant environment nodes/q;p' /etc/hosts > /tmp/hosts
+    cat /tmp/hosts > /etc/hosts
+    rm /tmp/hosts
+
+    # configure hosts file for our internal network defined by Vagrantfile
+    echo "# vagrant environment nodes" >> /etc/hosts
+    echo "10.0.15.10 chef-server" >> /etc/hosts
+    echo "10.0.15.100 node-ubuntu" >> /etc/hosts
+  SHELL
+end
