@@ -92,3 +92,14 @@ The included node configurations will start with the minimal bento Images and pr
 - node-ubuntu - 10.0.15.100
 - node-centos - 10.0.15.101
 - node-debian - 10.0.15.102
+
+## Register Nodes in Chef Server
+
+To register the nodes and install the chef client, you can use the following commands. This connects to the machines
+and executes the bootstrap script with sudo.
+
+```
+knife bootstrap node-centos --ssh-user vagrant --ssh-password vagrant --sudo --node-name node-centos
+knife bootstrap node-debian --ssh-user vagrant --ssh-password vagrant --sudo --node-name node-debian
+knife bootstrap node-ubuntu --ssh-user vagrant --ssh-password vagrant --sudo --node-name node-ubuntu
+```
