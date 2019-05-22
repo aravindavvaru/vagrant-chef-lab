@@ -38,6 +38,8 @@ Cmnd_Alias VAGRANT_HOSTS_ADD = /bin/sh -c echo "*" >> /etc/hosts
 Cmnd_Alias VAGRANT_HOSTS_REMOVE = /usr/bin/sed -i -e /*/ d /etc/hosts
 %admin ALL=(root) NOPASSWD: VAGRANT_HOSTS_ADD, VAGRANT_HOSTS_REMOVE
 
+# If using Windows, then you can give your user modify rights to the hosts file
+# Execute in Admin-CMD: icacls %SYSTEMROOT%\system32\drivers\etc\hosts /GRANT %USERNAME%:(M)
 ````
 
 Now install the Chef-Workstation Tools that you previously downloaded.
