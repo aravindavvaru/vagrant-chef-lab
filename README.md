@@ -13,6 +13,7 @@ This is my local [Chef](https://www.chef.io) test environment, that I run locall
 I personally use Homebrew (https://brew.sh) to install Virtual Box, Virtual Box Extension Pack and Vagrant and keep them up to date. If you don't use it yet, check it out. I install most of my software packages with it.
 
 ````
+## MacOS
 # Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -38,8 +39,14 @@ Cmnd_Alias VAGRANT_HOSTS_ADD = /bin/sh -c echo "*" >> /etc/hosts
 Cmnd_Alias VAGRANT_HOSTS_REMOVE = /usr/bin/sed -i -e /*/ d /etc/hosts
 %admin ALL=(root) NOPASSWD: VAGRANT_HOSTS_ADD, VAGRANT_HOSTS_REMOVE
 
-# If using Windows, then you can give your user modify rights to the hosts file
-# Execute in Admin-CMD: icacls %SYSTEMROOT%\system32\drivers\etc\hosts /GRANT %USERNAME%:(M)
+## Windows
+# Install Vagrant, VirtualBox and the VirtualBox Extension Pack
+#
+# Install Vagrant Hosts Update Plugin
+vagrant plugin install vagrant-hostsupdater
+
+# Give your user modify rights to the hosts file by executing the following command in an adminstrative shell:
+# icacls %SYSTEMROOT%\system32\drivers\etc\hosts /GRANT %USERNAME%:(M)
 ````
 
 Now install the Chef-Workstation Tools that you previously downloaded.
